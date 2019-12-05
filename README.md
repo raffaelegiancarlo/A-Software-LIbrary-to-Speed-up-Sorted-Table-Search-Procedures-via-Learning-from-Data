@@ -1,1 +1,1 @@
-<center> ## BENCHMARKING SOFTWARE OF AN ATOMIC LEARNED INDEX</center>
+# Benchmarking  Software of an Atomic Learned Index
