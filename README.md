@@ -1,4 +1,4 @@
-# Benchmarking  Software of an Atomic Learned Index
+# Benchmarking Software for Learned Binary and Interpolation Search
 
 This repository provides a benchmarking platform to evaluate how Feed Forward Neural Networks can be effectively used as index data structures. That is, how well in terms of time and space, those Networks can solve the well known predecessor problem, i.e., searching for an element in a sorted table. In theory, those networks, with RELU activators,  are able to approximate any function [1] , including the one needed to solve predecessor search. Then, a simple binary search concludes the task.  In order to make clear the innovation of this approach, proposed by Kraska et al.[2], we consider an ATOMIC LEARNED INDEX. That is, we use only one prediction node in the Recursive Model Index intyroduced by Kraska et al. . Moreover, we also consider multivariate and univariate linear regression as alternative “predictors” to Neural Networks.
 
