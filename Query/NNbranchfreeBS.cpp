@@ -50,6 +50,19 @@ int main(int argc, char * argv[]) {
         }
     }
 
+    //Check Iteration Number
+    if(!cmdOptionExists(argv, argv+argc, "-q"))
+    {
+        std::cerr << "Number of Iteration missed...Aborting..." << std::endl;
+        return 1;
+    }else{
+        n = getCmdOption(argv, argv + argc, "-n");
+        if(!n || !strncmp ( n, "-", 1 )){
+            std::cerr << "Number of Iteration missed...Aborting..." << std::endl;
+            return 1;
+        }
+    }
+
     //Check Output filename parameter
     if(!cmdOptionExists(argv, argv+argc, "-o"))
     {
@@ -113,6 +126,7 @@ int main(int argc, char * argv[]) {
 
     int m,q;
     int *A, *Q;
+    int N
 
     m = readCSV(AFn, &A);
     q = readCSVQ(QFn, &Q);
