@@ -2,18 +2,31 @@
 #include<bits/stdc++.h> 
 
 long readCSV(std::string fn, int **data){
-    printf("Readind CSV\n");
     FILE* fp; 
     int i = 0;
+    char ch;
     fp = fopen( fn.c_str(), "r" );
-    if(fp == NULL){ throw "File Error: Opening File Failed."; }
-
-    *data = (int*)malloc(sizeof(int));
-    if(*data == NULL) { throw "Allocation Error: Not enough Memory...";}
-
+    if(fp == NULL){ 
+        std::stringstream errMsg;
+        errMsg << "File Error: Opening File Failed.";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
+    i++;
+    while ((ch = fgetc(fp)) != EOF)
+    {
+      if (ch == '\n')
+        i++;
+    }
+    std::cout << i << std::endl;
+    *data = (int*)malloc(i*sizeof(int));
+    if(*data == NULL) { 
+        std::stringstream errMsg;
+        errMsg << "Allocation Error: Not enough Memory...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
+    fseek(fp, 0L, SEEK_SET);
     for(i = 0; !feof(fp); i++){
         fscanf(fp, "%d\n", &data[0][i]);
-        *data = (int*)realloc(*data, (i+2)*sizeof(int));
     }
 
     return i;
@@ -25,9 +38,17 @@ long readCSVQ(std::string fn, int **data){
     int i = 0;
 
     fp = fopen( fn.c_str(), "r" );
-    if(fp == NULL){ throw "File Error: Opening File Failed."; }
+    if(fp == NULL){ 
+        std::stringstream errMsg;
+        errMsg << "File Error: Opening File Failed.";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
     *data = (int*)malloc(sizeof(int));
-    if(*data == NULL) { throw "Allocation Error: Not enough Memory...";}
+    if(*data == NULL) { 
+        std::stringstream errMsg;
+        errMsg << "Allocation Error: Not enough Memory...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
     for(i = 0; !feof(fp); i++){
         fscanf(fp, "%d\n", &data[0][i]); 
         *data = (int*)realloc(*data, (i+2)*sizeof(int));   

@@ -136,7 +136,7 @@ double* NNprediction(char* fn, int q, double *A, double* W, double *b, int m, in
         printf("%1.10lf\n", timer[t]);
     }
     printf("Tot:%1.10lf\n", tot);
-    *timerMain = tot;
+    *timerMain = tot/m;
 
     return C;
 }

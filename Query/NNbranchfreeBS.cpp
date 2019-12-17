@@ -12,7 +12,6 @@
 #include "../lib/utils.h"
 #include "../lib/NNutils.h"
 
-#define N 100
 
 int main(int argc, char * argv[]) {
 
@@ -137,7 +136,7 @@ int main(int argc, char * argv[]) {
         ss.str("");
         ss.clear();
     }else{
-        ss << path << "weights_" << dataName << ".dat";
+        ss << path << "nn_w_" << dataName << ".dat";
         wFn = ss.str();
         ss.str("");
         ss.clear();
@@ -148,7 +147,7 @@ int main(int argc, char * argv[]) {
         ss.str("");
         ss.clear();
     }else{
-        ss << path << "bias_" << dataName << ".dat";
+        ss << path << "nn_bias_" << dataName << ".dat";
         bFn = ss.str();
         ss.str("");
         ss.clear();
@@ -194,8 +193,11 @@ int main(int argc, char * argv[]) {
 
     std::cout << AFn << std::endl;
 
+    std::cout << "Reading Input data" << std::endl;
     m = readCSV(AFn, &A);
-    q = readCSVQ(QFn, &Q);
+
+    std::cout << "Reading Query data" << std::endl;
+    q = readCSV(QFn, &Q);
 
     std::cout << "DIM A:" << m << std::endl;
     std::cout << "DIM Q:" << q << std::endl;
@@ -212,10 +214,10 @@ int main(int argc, char * argv[]) {
         fclose(out);
         out = fopen(outputFn, "a+");
     }
-
-    timer = (double*)calloc(atoi(nIter), sizeof(double));
+    int n = atoi(nIter);
+    timer = (double*)calloc(n, sizeof(double));
     std::cout << nIter << std::endl;
-    for( int j = 0; j < atoi(nIter); j++){
+    for( int j = 0; j < n; j++){
         O = NNprediction(dataName, atoi(queryName), I, W, b, q, 64, 1, &timer[j]);
 
         std::cout << "Performing Branch Free Binary Search" << std::endl;
@@ -229,13 +231,13 @@ int main(int argc, char * argv[]) {
         
     }
 
-    for(int i = 0; i<N; i++){
+    for(int i = 0; i<n; i++){
         
-        devStd += (timer[i] - timerAcc/N)*(timer[i] - timerAcc/N);
+        devStd += (timer[i] - timerAcc/n)*(timer[i] - timerAcc/n);
     }
 
 
-    fprintf(out, "%s, %s, %.15lf, %.15lf\n", dataName, queryName, timerAcc/N, devStd/N>0 ? sqrt(devStd/N) : 0);
+    fprintf(out, "%s, %s, %.15lf, %.15lf\n", dataName, queryName, timerAcc/n, devStd/n>0 ? sqrt(devStd/n) : 0);
 
     return 0;    
 }
