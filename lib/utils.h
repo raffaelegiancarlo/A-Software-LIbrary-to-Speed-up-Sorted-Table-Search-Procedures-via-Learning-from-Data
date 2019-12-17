@@ -1,8 +1,8 @@
 #include <iostream>
-#include <stream.h>
+#include<bits/stdc++.h> 
 
 long readCSV(std::string fn, int **data){
-    printf("Leggo il CSV\n");
+    printf("Readind CSV\n");
     FILE* fp; 
     int i = 0;
     fp = fopen( fn.c_str(), "r" );

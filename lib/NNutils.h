@@ -1,23 +1,32 @@
 #include <stdio.h>
 #include <time.h>
 #include <ctime> 
-#include <stream.h>
+#include <iostream>
+#include <sstream>
 
 /*MKL Libraries for Matrix Multiplication on Intel CPU*/
 #include "/opt/intel/mkl/include/mkl.h"
 #include "/opt/intel/mkl/include/mkl_vml_functions.h"
 
-long readNNInput(const char* fn, double **data, int m){
+long readNNInput(std::string fn, double **data, int m){
     std::cout << "Reading Input"<< std::endl;
     FILE* fp; 
     long num = 0;
-    fp = fopen( fn, "r" );
+    fp = fopen( fn.c_str(), "r" );
 
-    if(fp == NULL){ throw "File Error: Opening File Failed."; }
+    if(fp == NULL){ 
+        std::stringstream errMsg;
+        errMsg << "Opening File Failed...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
 
     fscanf(fp, "%ld\n", &num);
     *data = (double*)mkl_malloc(sizeof(double)*(num*m), 64);
-    if(*data == NULL) { throw "Allocation Error: Not enough Memory...";}
+    if(*data == NULL) { 
+        std::stringstream errMsg;
+        errMsg << "Allocation Failed...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
     for(int i = 0; i<num; i++){
         for(int j = 0; j<64;j++){
             fscanf(fp, "%1lf", &data[0][i*m+j]);
@@ -28,26 +37,42 @@ long readNNInput(const char* fn, double **data, int m){
     return num;
 }
 
-void readNNParams(const char* fn, double **data, int m){
+void readNNParams(std::string fn, double **data, int m){
     std::cout << "Reading W..."<< std::endl;
     FILE* fp; 
-    fp = fopen( fn, "r" );
-    if(fp == NULL){ throw "File Error: Opening File Failed."; }
+    fp = fopen( fn.c_str(), "r" );
+    if(fp == NULL){ 
+        std::stringstream errMsg;
+        errMsg << "Opening File Failed...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
     *data = (double*)mkl_malloc(sizeof(double)*(m), 64);
-    if(*data == NULL) { throw "Allocation Error: Not enough Memory...";}
+    if(*data == NULL) { 
+        std::stringstream errMsg;
+        errMsg << "Allocation Failed...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
     for(int j = 0; j<m;j++){
         fscanf(fp, "%lf\n", &data[0][j]);
     }
     fclose(fp);
 }
 
-void readNNBias(const char* fn, double **data, int n, int m){
+void readNNBias(std::string fn, double **data, int n, int m){
     std::cout << "Reading Bias..."<< std::endl;
     FILE* fp; 
-    fp = fopen( fn, "r" );
-    if(fp == NULL){ throw "File Error: Opening File Failed."; }
+    fp = fopen( fn.c_str(), "r" );
+    if(fp == NULL){ 
+        std::stringstream errMsg;
+        errMsg << "Opening File Failed...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
     *data = (double*)mkl_malloc(sizeof(double)*(n*m), 64);
-    if(*data == NULL) { throw "Allocation Error: Not enough Memory...";}
+    if(*data == NULL) { 
+        std::stringstream errMsg;
+        errMsg << "Allocation Failed...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
     for(int j = 0; j<m;j++){
         fscanf(fp, "%lf\n", &data[0][j]);
         for(int i=0; i<n; i++){
@@ -58,7 +83,7 @@ void readNNBias(const char* fn, double **data, int n, int m){
     fclose(fp);
 }
 
-double* NNprediction(char* fn, int q, double *A, double* W, double *b, int m, int k, int n, FILE* out_fp , double *timerMain){
+double* NNprediction(char* fn, int q, double *A, double* W, double *b, int m, int k, int n, double *timerMain){
     
     double  *C;
     int i, j;
@@ -111,10 +136,7 @@ double* NNprediction(char* fn, int q, double *A, double* W, double *b, int m, in
         printf("%1.10lf\n", timer[t]);
     }
     printf("Tot:%1.10lf\n", tot);
-    *timerMain = tot/m;
-
-    printf("Scrivo Risultati\n");
-	fprintf(out_fp, "%s, %d, %1.16lf,%1.16lf,%1.16lf,%1.16lf,%1.16lf\n" , fn, q, timer[0], timer[1], timer[2], tot, *timerMain);
+    *timerMain = tot;
 
     return C;
 }
