@@ -1,3 +1,5 @@
 Query/*
+Resource/*
+Result/*
 
 !Query/*.cpp
