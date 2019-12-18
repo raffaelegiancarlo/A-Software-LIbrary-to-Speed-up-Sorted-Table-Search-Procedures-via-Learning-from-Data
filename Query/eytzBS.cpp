@@ -131,7 +131,7 @@ int main(int argc, char * argv[]) {
     */
 
     int m,q;
-    int *A, *Q;
+    int *A, *Q, *V;
     FILE * out;
 
     double *timer;
@@ -152,7 +152,7 @@ int main(int argc, char * argv[]) {
     out = fopen(outputFn, "r");
     if(out == NULL){
         out = fopen(outputFn, "w+");
-        fprintf(out, "File, Query, Branchfree BS Mean, Branchfree BS DevStd\n");
+        fprintf(out, "File, Query, Eytz BS Mean, Eytz BS DevStd\n");
     }else{
         fclose(out);
         out = fopen(outputFn, "a+");
@@ -160,11 +160,16 @@ int main(int argc, char * argv[]) {
     int n = atoi(nIter);
     timer = (double*)calloc(n, sizeof(double));
     std::cout << nIter << std::endl;
+
+    std::cout << "Eytzinger Array Construction..." << std::endl;
+    V = (int*)malloc(sizeof(int)*m);
+    eytzeingerArray(A, &V, 0, m);
+
     for( int j = 0; j < n; j++){
-        std::cout << "Performing Branch Free Binary Search " << j << std::endl;
+        std::cout << "Performing Prefeched Branch Free Binary Search " << j << std::endl;
         std::clock_t c_start = std::clock();
         for(int i = 0; i<q; i++){
-            res = branchfreeBS(A, Q[i], 0, m);
+            res = prefetchEytzBS(V, Q[i], 0, m);
         }
         std::clock_t c_end = std::clock();
         timer[j] += ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC/q;
