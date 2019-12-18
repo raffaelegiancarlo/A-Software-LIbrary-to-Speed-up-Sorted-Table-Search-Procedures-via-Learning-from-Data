@@ -4,5 +4,7 @@ Resource/*
 Result
 Result/*
 
-!Query/*.cpp
-!Query/*/*.cpp
+!Query/*/
+Query/*/*
+!Query/**/*.cpp
+!Query/**/*.cpp
