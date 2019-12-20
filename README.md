@@ -7,9 +7,9 @@ The scenario we have considered is in memory data and batch queries, which is a 
 We include:
 
 1. Software implementing [Atomic Indexes](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Atomic%20Index), including Neural Network  and unvariate linear regression as predictors. The final stage is the branch-free binary search proposed in  [4].
-1. Binary Search Software, adapted for our benchmarking, mostly adapted from [4] (GitHUb site loro)
-1. Neural Networks Training Software
-1. Multi and Univariate Linear Regression Software
+1. [Binary Search Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Binary%20Search), adapted for our benchmarking, mostly adapted from [4] (GitHUb site loro)
+1. [Neural Networks Training Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Atomic%20Index/NN_Train)
+1. [Multi and Univariate Linear Regression Software]()
 
 ## Bibliography
 
