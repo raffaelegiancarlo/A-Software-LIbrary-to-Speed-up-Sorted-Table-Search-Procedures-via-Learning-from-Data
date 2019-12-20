@@ -28,15 +28,14 @@ To run NN Predictor use:
 
 ./[outputFilename] -p [Path] -d [Dataset] -q [Query] -o [Output] -e [epsilon] -n [iteration]
 
-Argument:
-- -p Path of Resource file (e.g.: "./Resource/")  
-- -d Name of dataset file (e.g.: "uni01")  
-- -q Name of query (e.g.: 10% query name is "10")  
-- -o Name of output csv file with time results (e.g.: "NNPredictorTime.csv")
-- -e Maximum error made by NN Predictor
-- -n Number of times to repeat the experiment (Final time is the mean of the times of each iteration) 
-
 ```
 
+Argument:
+* -p Path of Resource file (e.g.: "./Resource/")  
+* -d Name of dataset file (e.g.: "uni01")  
+* -q Name of query (e.g.: 10% query name is "10")  
+* -o Name of output csv file with time results (e.g.: "NNPredictorTime.csv")
+* -e Maximum error made by NN Predictor
+* -n Number of times to repeat the experiment (Final time is the mean of the times of each iteration) 
 
 ## ULR Predictor
