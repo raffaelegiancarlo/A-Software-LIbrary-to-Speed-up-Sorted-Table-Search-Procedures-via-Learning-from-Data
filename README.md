@@ -4,11 +4,11 @@ This repository provides a benchmarking platform to evaluate how  Machine Learni
 
 We include in this repository:
 
-1. The directory [Atomic Indexes](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Atomic_Index), containes our implementtions of learned binary and interpolation search.
-1. Thwe directiry [Binary Search Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Binary_Search) containes binary search, mostly taken from [4] (http://cglab.ca/~morin/misc/arraylayout-v2/), and adapted for our purposes. 
-1. The directory [Interpolation Search](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Interpolation_Search) provides a standard textbook implementatioin of interpolation search, adapted for our purposes. 
-1. The directory [Neural Networks Training Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/NN_Train) provides training software for Feed-Forward, RELU, training
-1. The directoru [Multi and Univariate Linear Regression Software] provides software for textbook iomplementations of multi/univariate linear regression.
+1. The directory [Atomic Indexes](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Atomic_Index), contains our implementtions of learned binary and interpolation search.
+1. The directory [Binary Search Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Binary_Search) contains binary search implementations, mostly taken from [4] (http://cglab.ca/~morin/misc/arraylayout-v2/), and adapted for our purposes. 
+1. The directory [Interpolation Search](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Interpolation_Search) contains a standard textbook implementation of interpolation search, adapted for our purposes. 
+1. The directory [Neural Networks Training Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/NN_Train) contains  software for Feed-Forward, RELU, training
+1. The directory [Multi and Univariate Linear Regression Software] contains  software implementing  textbook versions of multi/univariate linear regression.
 
 ## Bibliography
 
