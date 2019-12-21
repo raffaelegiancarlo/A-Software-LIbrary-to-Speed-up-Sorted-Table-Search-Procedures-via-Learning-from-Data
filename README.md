@@ -4,11 +4,11 @@ This repository provides a benchmarking platform to evaluate how  Machine Learni
 
 We include in this repository:
 
-1. Software implementing [Atomic Indexes](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Atomic_Index), including Neural Network  and unvariate linear regression as predictors. The final stage is the branch-free binary search proposed in  [4].
-1. [Binary Search Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Binary_Search), adapted for our benchmarking, mostly adapted from [4] (GitHUb site loro)
-1. [Interpolation Search](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Interpolation_Search)
-1. [Neural Networks Training Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/NN_Train)
-1. [Multi and Univariate Linear Regression Software]()
+1. The directory [Atomic Indexes](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Atomic_Index), containes our implementtions of learned binary and interpolation search.
+1. Thwe directiry [Binary Search Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Binary_Search) containes binary search, mostly taken from [4] (http://cglab.ca/~morin/misc/arraylayout-v2/), and adapted for our purposes. 
+1. The directory [Interpolation Search](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/Interpolation_Search) provides a standard textbook implementatioin of interpolation search, adapted for our purposes. 
+1. The directory [Neural Networks Training Software](https://github.com/raffaelegiancarlo/BENCHMARKING-SOFTWARE-FOR-LEARNED-BINARY-AND-INTERPOLATION-SEARCH/tree/master/NN_Train) provides training software for Feed-Forward, RELU, training
+1. The directoru [Multi and Univariate Linear Regression Software] provides software for textbook iomplementations of multi/univariate linear regression.
 
 ## Bibliography
 
