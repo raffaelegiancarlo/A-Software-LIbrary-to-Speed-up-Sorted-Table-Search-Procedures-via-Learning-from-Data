@@ -1,7 +1,7 @@
 # Binary Search
 
 ## Genaral 
-This directory contains two cpp files. The first (NOME FILE) implements branch-free binary search. The secomd (NOME FILE) Eytzeinger Layout Binary Search. Bothy programs are stand-alone. 
+This directory contains two cpp files. The first (NOME FILE) implements branch-free binary search. The secomd (NOME FILE) Eytzeinger Layout Binary Search. Both programs are stand-alone. 
 ## Requirements and Use
 
 ### Branch-free Binary Search
