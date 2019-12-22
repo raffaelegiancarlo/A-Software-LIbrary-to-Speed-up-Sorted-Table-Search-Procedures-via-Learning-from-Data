@@ -1,11 +1,12 @@
 # Atomic Index
 
 ## General Structure
-
+This directory contains three cpp file. The file <NOME FILE> implements NN prediction followed by Branch-Free Binary Search. 
+  The second <NOME FILE> implements Univariate Linear Regression for prediction followed by Branch-Free Binary Search. The third <NOME FILE> implements Univariate Linear Regression for prediction followed by Branchy Interpolation Search.
 ## Requirements and Use
 
 
-### NN Predictor
+### NN Predictor + Branch-Free Binary Search
 
 
 
@@ -13,7 +14,7 @@
 
 NN Predictor Software has been made using Intel Math Kernel Library (MKL) downloadable from [https://software.intel.com/en-us/mkl/choose-download](https://software.intel.com/en-us/mkl/choose-download)
 
-### Compile
+#### Compile
 
 In order to compile Atomic Index with NN Predictor Software, MKL params must be applied on g++ compiler using:
 
@@ -27,7 +28,7 @@ g++ NNbranchfreeBS.cpp -o [outputFilename] -Wl,--start-group [MKL Library PATH]/
 
 [outputFilename] must be replaced by the name of the file that will be executed
 
-### Run
+#### Run
 
 To run NN Predictor use:
 
@@ -45,4 +46,22 @@ Argument:
 * -e Maximum error made by NN Predictor
 * -n Number of times to repeat the experiment (Final time is the mean of the times of each iteration) 
 
-## ULR Predictor
+### ULR Predictor+Branch-Free Binary Search
+
+
+#### Requirements
+
+#### Compile 
+
+#### Run
+
+
+
+### ULR Predictor+Branchy Interpolation  Search
+
+
+#### Requirements
+
+#### Compile 
+
+#### Run
