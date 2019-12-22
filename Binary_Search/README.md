@@ -1,8 +1,14 @@
 # Binary Search
 
-## Branchfree Binary Search
+## Genaral 
 
-### Compile
+## Requirements and Use
+
+### Branch-free Binary Search
+
+####
+
+#### Compile
 
 To compile use:
 
@@ -14,7 +20,7 @@ g++ branchfreeBS.cpp -o [outputFilename]
 
 [outputFilename] must be replaced by the name of the file that will be executed
 
-### Run
+#### Run
 
 To run Branchfree Binary Search use:
 
@@ -31,9 +37,11 @@ Argument:
 * -o Name of output csv file with time results (e.g.: "branchfreeBSTime.csv")
 * -n Number of times to repeat the experiment (Final time is the mean of the times of each iteration) 
 
-## Eytzeinger Layout Binary Search
+### Eytzeinger Layout Binary Search
 
-### Compile
+#### Requirements
+
+#### Compile
 
 To compile use:
 
@@ -45,7 +53,7 @@ g++ eytzBS.cpp -o [outputFilename]
 
 [outputFilename] must be replaced by the name of the file that will be executed
 
-### Run
+#### Run
 
 To run Eitzeinger Binary Search use:
 
