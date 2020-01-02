@@ -1,7 +1,7 @@
-# Atomic Index
+# Learned Sorted Table Search
 
 ## General Structure
-This directory contains three cpp files. The first  (NOME FILE) implements NN prediction followed by Branch-Free Binary Search. The second (NOME FILE) implements Univariate Linear Regression for prediction followed by Branch-Free Binary Search. The third (NOME FILE) implements Univariate Linear Regression for prediction followed by Branchy Interpolation Search.
+This directory contains three cpp files. The first  (NNbranchfreeBS.cpp) implements NN prediction followed by Branch-Free Binary Search. The second (NOME FILE) implements Univariate Linear Regression for prediction followed by Branch-Free Binary Search. The third (NOME FILE) implements Univariate Linear Regression for prediction followed by Branchy Interpolation Search.
 ## Requirements and Use
 
 
