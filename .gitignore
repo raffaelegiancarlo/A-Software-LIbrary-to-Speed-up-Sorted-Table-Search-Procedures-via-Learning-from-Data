@@ -1,10 +1,10 @@
-Binary_Search_Software
-Binary_Search_Software/*
-Interpolation_Search
-Interpolation_Search/*
-Learned_sorted_table_search
-Learned_sorted_table_search/*
+Query/*
 Resource
 Resource/*
 Result
 Result/*
+
+!Query/*/
+Query/*/*
+!Query/**/*.cpp
+!Query/**/*.cpp
