@@ -8,3 +8,5 @@ Result/*
 Query/*/*
 !Query/**/*.cpp
 !Query/**/*.cpp
+
+venv
