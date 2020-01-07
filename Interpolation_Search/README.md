@@ -34,5 +34,5 @@ Argument:
 * -p Path of Resource file (e.g.: "./Resource/")  
 * -d Name of dataset file (e.g.: "uni01")  
 * -q Name of query (e.g.: 10% query name is "10")  
-* -o Name of output csv file with time results (e.g.: "branchfreeBSTime.csv")
+* -o Name of output csv file with time results (e.g.: "interpolationSearchTime.csv")
 * -n Number of times to repeat the experiment (Final time is the mean of the times of each iteration) 

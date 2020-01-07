@@ -36,7 +36,7 @@ parser.add_argument('-id', '--inputDir', dest="inputDir", default="input.h5",
 help='Input file path')
 parser.add_argument('-m', '--modelName', dest="modelName", default="NN0",
                     help='Name of json File of the NN structures')
-parser.add_argument('-o', '--output', dest="outputPath", default="output.h5",
+parser.add_argument('-o', '--output', dest="outputPath", default="./",
                     help='Output file path')
 parser.add_argument('-p', '--params', dest="params", default="params.json",
                     help='Params file path with file name')

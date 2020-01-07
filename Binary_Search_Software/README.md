@@ -1,7 +1,7 @@
 # Binary Search
 
 ## Genaral 
-This directory contains two cpp files. The first (branchfreeBS.cpp) implements branch-free binary search. The secomd (eytzBS.cpp) Eytzeinger Layout Binary Search. Both programs are stand-alone. 
+This directory contains two cpp files. The first (branchfreeBS.cpp) implements branch-free binary search. The second (eytzBS.cpp) Eytzeinger Layout Binary Search. Both programs are stand-alone. 
 ## Requirements and Use
 
 ### Branch-free Binary Search
