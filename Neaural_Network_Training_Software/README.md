@@ -44,7 +44,7 @@ To run NN Training Software use:
 
 ```Shell
 
-./trainNN.py -p [Path] -d [Dataset] -q [Query] -o [Output] -e [epsilon] -n [iteration]
+./trainNN.py -i [Input File] -id [Inputh Path] -m [Model] -o [Output File Path] -p [Params File Path]
 
 ```
 
