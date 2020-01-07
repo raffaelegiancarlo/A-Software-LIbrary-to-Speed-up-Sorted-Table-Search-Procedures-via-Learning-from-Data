@@ -1,7 +1,7 @@
 # Interpolation Search
 
 ## General 
-This directory contains one cpp files (interpolationSearch.cpp) that implements textbook interpolation search. This program is stand-alone. 
+This directory contains one cpp files (interpolationSearch.cpp) that implements textbook version interpolation search. This program is stand-alone. 
 ## Requirements and Use
 
 ### Textbook Interpolation Search
