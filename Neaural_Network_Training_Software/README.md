@@ -23,7 +23,7 @@ This script use a json file to configure training options. This file have the fo
 ```JSON
 
 {
-    "loss":"mse", #Name of the loss Function
+    "loss":"mse", //Name of the loss Function
     "learning-rate": 0.1, //Learning Rate used during training
     "momentum":0.9, //Momentum of the SDG algorithm
     "epochs": 20000, //Max Number of Epochs
