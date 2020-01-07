@@ -52,9 +52,33 @@ Argument:
 
 #### Compile 
 
+To compile use:
+
+```Shell
+
+g++ ULRBS.cpp -o [outputFilename]
+
+``` 
+
+[outputFilename] must be replaced by the name of the file that will be executed
+
 #### Run
 
+To run URL Predictor + BS use:
 
+```Shell
+
+./[outputFilename] -p [Path] -d [Dataset] -q [Query] -o [Output] -e [epsilon] -n [iteration]
+
+```
+
+Argument:
+* -p Path of Resource file (e.g.: "./Resource/")  
+* -d Name of dataset file (e.g.: "uni01")  
+* -q Name of query (e.g.: 10% query name is "10")  
+* -o Name of output csv file with time results (e.g.: "ULRBSTime.csv")
+* -e Maximum error made by ULR Predictor
+* -n Number of times to repeat the experiment (Final time is the mean of the times of each iteration) 
 
 ### ULR Predictor+Branchy Interpolation  Search
 
@@ -63,4 +87,30 @@ Argument:
 
 #### Compile 
 
+To compile use:
+
+```Shell
+
+g++ ULRIS.cpp -o [outputFilename]
+
+``` 
+
+[outputFilename] must be replaced by the name of the file that will be executed
+
 #### Run
+
+To run URL Predictor + IS use:
+
+```Shell
+
+./[outputFilename] -p [Path] -d [Dataset] -q [Query] -o [Output] -e [epsilon] -n [iteration]
+
+```
+
+Argument:
+* -p Path of Resource file (e.g.: "./Resource/")  
+* -d Name of dataset file (e.g.: "uni01")  
+* -q Name of query (e.g.: 10% query name is "10")  
+* -o Name of output csv file with time results (e.g.: "ULRISTime.csv")
+* -e Maximum error made by ULR Predictor
+* -n Number of times to repeat the experiment (Final time is the mean of the times of each iteration) 
