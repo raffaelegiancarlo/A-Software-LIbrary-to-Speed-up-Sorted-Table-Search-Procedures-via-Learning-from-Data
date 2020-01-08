@@ -4,6 +4,7 @@ import numpy as np
 import h5py 
 import json
 import time
+import os
 
 def mean_error(set_dim):
     def mean_error_metric(y_true, y_pred):
@@ -30,13 +31,15 @@ def max_error(set_dim):
 
 #Set Argument Parser for input information
 parser = argparse.ArgumentParser(description='Train NN for Datastructure index')
-parser.add_argument('-i', '--input', dest="inputFile", default="input.h5",
+parser.add_argument('-i', '--input', dest="inputFile", default="uni01",
                     help='Input file name')
-parser.add_argument('-id', '--inputDir', dest="inputDir", default="input.h5",
+parser.add_argument('-id', '--inputDir', dest="inputDir", default="./Resource",
 help='Input file path')
 parser.add_argument('-m', '--modelName', dest="modelName", default="NN0",
                     help='Name of json File of the NN structures')
-parser.add_argument('-o', '--output', dest="outputPath", default="./",
+parser.add_argument('-md', '--modelDir', dest="modelDir", default="./Neaural_Network_Training_Software/models/",
+                    help='Model files Directory')
+parser.add_argument('-o', '--output', dest="outputPath", default="./Result",
                     help='Output file path')
 parser.add_argument('-p', '--params', dest="params", default="params.json",
                     help='Params file path with file name')
@@ -45,7 +48,7 @@ args = parser.parse_args()
 
 
 
-json_file = open(args.params, "r")
+json_file = open(os.path.join(args.modelDir, args.params), "r")
 params_str = json_file.read()
 json_file.close()
 params = json.loads(params_str)
@@ -53,7 +56,7 @@ print(params)
 
 #Load Dataset
 bin_data=[]
-with h5py.File(args.inputDir+"/"+args.inputFile,'r') as f:
+with h5py.File(args.inputDir+"/"+args.inputFile+"_bin.sorted.mat",'r') as f:
     data = f.get('Sb') 
     bin_data = np.array(data, dtype=np.bool) # For converting to numpy array
 bin_data = np.transpose(bin_data)
@@ -67,7 +70,7 @@ labels = np.linspace(1, len(bin_data), num=len(bin_data), dtype=np.float64)
 labels = labels/len(bin_data)
 labels = np.reshape(labels, (-1, 1))
 
-json_file = open("models/json/"+args.modelName+".json", "r")
+json_file = open(os.path.join(args.modelDir,"json", args.modelName+".json"), "r")
 loaded_model = json_file.read()
 json_file.close()
 
@@ -78,8 +81,8 @@ nn_name=args.modelName
 
 #Callback for Training
 stopping = tf.keras.callbacks.EarlyStopping(monitor=params["monitor"], patience=params["patience"], verbose=params["verbose"])
-chkpoints = tf.keras.callbacks.ModelCheckpoint(filepath=args.outputPath+"/"+params["chk-dir"]+"/"+nn_name+"/best_model.h5py", monitor=params["monitor"], verbose=params["verbose"], save_best_only=True, save_weights_only=True, mode='auto', period=1)
-tensorboard = tf.keras.callbacks.TensorBoard(log_dir=args.outputPath+"/"+params["log-dir"]+"/"+nn_name, histogram_freq=None, embeddings_freq=None)
+chkpoints = tf.keras.callbacks.ModelCheckpoint(filepath=args.outputPath+"/"+args.inputFile+"/"+params["chk-dir"]+"/"+nn_name+"/best_model.h5py", monitor=params["monitor"], verbose=params["verbose"], save_best_only=True, save_weights_only=True, mode='auto', period=1)
+tensorboard = tf.keras.callbacks.TensorBoard(log_dir=args.outputPath+"/"+args.inputFile+"/"+params["log-dir"]+"/"+nn_name, histogram_freq=None, embeddings_freq=None)
 
 
 sgd = tf.keras.optimizers.SGD(lr=params["learning-rate"], momentum=params["momentum"])
