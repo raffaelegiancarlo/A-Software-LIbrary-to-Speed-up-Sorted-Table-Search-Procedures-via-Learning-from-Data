@@ -8,7 +8,7 @@ import argparse
 
 #Set Argument Parser for input information
 parser = argparse.ArgumentParser(description='Train NN for Datastructure index')
-parser.add_argument('-i', '--input', dest="inputFile", default="uni01",
+parser.add_argument('-i', '--input', dest="inputFile", default="uni01.sorted",
                     help='Input file name')
 parser.add_argument('-id', '--inputDir', dest="inputDir", default="./",
 help='Input file path')
@@ -30,7 +30,7 @@ else:
 resJson[args.inputFile] = {}
 
 print("Reading Input File...")
-with h5py.File(os.path.join(args.inputDir, args.inputFile+".sorted.mat"),'r') as f:
+with h5py.File(os.path.join(args.inputDir, args.inputFile+".mat"),'r') as f:
     data = f.get('M')
     bin_data = np.array(data, dtype=np.int64)
     bin_data = np.transpose(bin_data)

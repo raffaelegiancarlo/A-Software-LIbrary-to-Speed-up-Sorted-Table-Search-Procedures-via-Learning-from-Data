@@ -113,12 +113,12 @@ int main(int argc, char * argv[]) {
         ss.clear();
     }
     if(path == NULL){
-        ss << dataName << ".sorted.csv";
+        ss << dataName << ".csv";
         AFn = ss.str();
         ss.str("");
         ss.clear();
     }else{
-        ss << path << dataName << ".sorted.csv";
+        ss << path << dataName << ".csv";
         AFn = ss.str();
         ss.str("");
         ss.clear();

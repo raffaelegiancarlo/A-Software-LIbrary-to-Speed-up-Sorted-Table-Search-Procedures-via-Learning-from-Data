@@ -31,7 +31,7 @@ def max_error(set_dim):
 
 #Set Argument Parser for input information
 parser = argparse.ArgumentParser(description='Train NN for Datastructure index')
-parser.add_argument('-i', '--input', dest="inputFile", default="uni01",
+parser.add_argument('-i', '--input', dest="inputFile", default="uni01_bin.sorted",
                     help='Input file name')
 parser.add_argument('-id', '--inputDir', dest="inputDir", default="./Resource",
 help='Input file path')
@@ -56,7 +56,7 @@ print(params)
 
 #Load Dataset
 bin_data=[]
-with h5py.File(args.inputDir+"/"+args.inputFile+"_bin.sorted.mat",'r') as f:
+with h5py.File(args.inputDir+"/"+args.inputFile+".mat",'r') as f:
     data = f.get('Sb') 
     bin_data = np.array(data, dtype=np.bool) # For converting to numpy array
 bin_data = np.transpose(bin_data)
