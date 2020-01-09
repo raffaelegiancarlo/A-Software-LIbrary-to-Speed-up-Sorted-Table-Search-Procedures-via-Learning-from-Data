@@ -23,7 +23,7 @@ args = parser.parse_args()
 my_data = genfromtxt(os.path.join(args.inputDir, args.inputFile+".sorted.csv"), delimiter=',', dtype=int)
 
 with h5py.File(os.path.join(args.outputPath, args.inputFile+".sorted.mat"), "w") as f:
-    f.create_dataset("M", data=my_data)
+    f.create_dataset("M", data=[my_data])
 
 binData=[]
 for data in my_data:
