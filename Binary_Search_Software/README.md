@@ -6,7 +6,9 @@ This directory contains two cpp files. The first (branchfreeBS.cpp) implements b
 
 ### Branch-free Binary Search
 
-####
+#### Requirements
+
+In order to compile cpp files a gcc 6 or above is needed
 
 #### Compile
 
@@ -40,6 +42,8 @@ Argument:
 ### Eytzeinger Layout Binary Search
 
 #### Requirements
+
+In order to compile cpp files a gcc 6 or above is needed
 
 #### Compile
 

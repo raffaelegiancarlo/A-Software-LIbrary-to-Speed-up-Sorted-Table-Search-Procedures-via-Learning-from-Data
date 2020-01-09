@@ -6,7 +6,9 @@ This directory contains one cpp files (interpolationSearch.cpp) that implements 
 
 ### Textbook Interpolation Search
 
-####
+#### Requirements
+
+In order to compile cpp files a gcc 6 or above is needed
 
 #### Compile
 
