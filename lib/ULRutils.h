@@ -5,7 +5,7 @@ void readRegrParams(std::string fn, double **wdata, double **bdata){
     fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "Opening File Failed...";
+        errMsg << "Opening File " << fn << " Failed...";
         throw std::runtime_error(errMsg.str().c_str());
     }
     *wdata = (double*)malloc(sizeof(double));
@@ -26,7 +26,7 @@ void readRegrParams(std::string fn, double **wdata, double **bdata){
     fclose(fp);
 }
 
-double * ULRprediction(char* fn, double *A, double* W, double* b, int m, int n, double *timerMain){
+double * ULRprediction(char* fn, int *A, double* W, double* b, int m, int n, double *timerMain){
     
     double  *C;
     int i, j;
@@ -38,7 +38,7 @@ double * ULRprediction(char* fn, double *A, double* W, double* b, int m, int n, 
     std::cout << "Starting ULR Prediction..." << std::endl;
 
     alpha = 1.0; beta = 0.0;
-    C = (double *)calloc( m*n, sizeof( double ), 64 );
+    C = (double *)calloc( m*n, sizeof( double ));
     if (C == NULL) {  
         C = NULL;
         std::stringstream errMsg;
@@ -58,21 +58,21 @@ double * ULRprediction(char* fn, double *A, double* W, double* b, int m, int n, 
     
     c_start = std::clock();
     for(int i = 0; i<m; i++){
-        C[i] = Q[i]*W[0];
+        C[i] = A[i]*W[0];
     }
     c_end = std::clock();
     
     timer[0] = ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC;
-    mult_acc += timer[0];
+    //mult_acc += timer[0];
 
     std::cout << "Computing Bias Sum..." << std::endl;
     c_start = std::clock();
     for(int i = 0; i<m; i++){
-        C[i] = Q[i]+b[0];
+        C[i] = C[i]+b[0];
     }
     c_end = std::clock();
     timer[1] = ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC;
-    bias_acc += timer[1];
+    //bias_acc += timer[1];
 
     double tot = 0;
     for(int t=0; t<2; t++){
