@@ -208,7 +208,7 @@ int main(int argc, char * argv[]) {
 
     std::cout << nIter << std::endl;
     for( int j = 0; j < n; j++){
-        O = ULRprediction(dataName, A, W, b, q, 1, &timer[j]);
+        O = ULRprediction(dataName, Q, W, b, q, 1, &timer[j]);
 
         std::cout << "Performing Branch Free Binary Search" << std::endl;
         std::clock_t c_start = std::clock();
