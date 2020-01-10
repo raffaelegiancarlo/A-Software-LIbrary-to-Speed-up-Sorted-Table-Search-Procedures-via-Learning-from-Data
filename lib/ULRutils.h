@@ -1,8 +1,8 @@
-void readRegrParams(const char* fn, double **wdata, double **bdata){
+void readRegrParams(std::string fn, double **wdata, double **bdata){
     std::cout << "Reading Weigths..."<< std::endl;
     FILE* fp; 
     //long num = 0;
-    fp = fopen( fn, "r" );
+    fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
         errMsg << "Opening File Failed...";
