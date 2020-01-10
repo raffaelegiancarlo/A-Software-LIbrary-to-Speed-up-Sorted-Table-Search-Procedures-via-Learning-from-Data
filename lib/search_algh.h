@@ -162,8 +162,8 @@ int tipFind(int *A, int x, int start, int end, int guard=8)
 }
 
 int branchfreeBS(int * A, int x,  int left, int right){
-    const int *base = A;
-    int n = right;
+    const int *base = A+left;
+    int n = right-left+1;
     while (n > 1) {
         const int half = n / 2;
         base = (base[half] < x) ? &base[half] : base;
@@ -197,8 +197,8 @@ int* eytzeingerArray(int *A, int **B, int i, int n){
 
 int prefetchEytzBS(int * A, int x,  int left, int right){
     
-    int i = 0;
-    int n = right;
+    int i = left;
+    int n = right-left+1;
     int multiplier = 128;
     int offset = 3*multiplier/2-1;
 

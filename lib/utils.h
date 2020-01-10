@@ -8,7 +8,7 @@ long readCSV(std::string fn, int **data){
     fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "File Error: Opening File Failed.";
+        errMsg << "File Error: Opening File " << fn << " Failed.";
         throw std::runtime_error(errMsg.str().c_str());
     }
     i++;
@@ -40,7 +40,7 @@ long readCSVQ(std::string fn, int **data){
     fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "File Error: Opening File Failed.";
+        errMsg << "File Error: Opening File " << fn << " Failed.";
         throw std::runtime_error(errMsg.str().c_str());
     }
     *data = (int*)malloc(sizeof(int));

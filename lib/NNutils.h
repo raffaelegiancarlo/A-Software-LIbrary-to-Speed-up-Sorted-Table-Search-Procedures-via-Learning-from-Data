@@ -16,7 +16,7 @@ long readNNInput(std::string fn, double **data, int m){
 
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "Opening File Failed...";
+        errMsg << "Opening File " << fn << " Failed...";
         throw std::runtime_error(errMsg.str().c_str());
     }
 
@@ -43,7 +43,7 @@ void readNNParams(std::string fn, double **data, int m){
     fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "Opening File Failed...";
+        errMsg << "Opening File " << fn << " Failed...";
         throw std::runtime_error(errMsg.str().c_str());
     }
     *data = (double*)mkl_malloc(sizeof(double)*(m), 64);
@@ -64,7 +64,7 @@ void readNNBias(std::string fn, double **data, int n, int m){
     fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "Opening File Failed...";
+        errMsg << "Opening File " << fn << " Failed...";
         throw std::runtime_error(errMsg.str().c_str());
     }
     *data = (double*)mkl_malloc(sizeof(double)*(n*m), 64);
