@@ -164,12 +164,12 @@ int main(int argc, char * argv[]) {
         ss.clear();
     }
     if(path == NULL){
-        ss << dataName << ".sorted.csv";
+        ss << dataName << ".csv";
         AFn = ss.str();
         ss.str("");
         ss.clear();
     }else{
-        ss << path << dataName << ".sorted.csv";
+        ss << path << dataName << ".csv";
         AFn = ss.str();
         ss.str("");
         ss.clear();
@@ -222,8 +222,8 @@ int main(int argc, char * argv[]) {
 
     std::cout << nIter << std::endl;
     for( int j = 0; j < n; j++){
-        O = ULRprediction(dataName, A, W, b, q, 1, &timer[j]);
-	for(int t = 0; t< q; t++){
+        O = ULRprediction(dataName, Q, W, b, q, 1, &timer[j]);
+        for(int t = 0; t< q; t++){
             O[t] = O[t]*m;
         }
         std::cout << "Performing Branch Free Binary Search" << std::endl;
