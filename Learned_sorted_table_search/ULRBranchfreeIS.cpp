@@ -10,7 +10,8 @@
 
 #include "../lib/search_algh.h"
 #include "../lib/utils.h"
-#include "../lib/NNutils.h"
+#include "../lib/ULRutils.h"
+
 
 
 int main(int argc, char * argv[]) {
@@ -28,7 +29,7 @@ int main(int argc, char * argv[]) {
         return 0;
     }
 
-    //Check Dataset name parameter
+    //Check Path parameter
     if(!cmdOptionExists(argv, argv+argc, "-p"))
     {
         path = NULL;
@@ -92,7 +93,7 @@ int main(int argc, char * argv[]) {
         }
     }
 
-    //Check Number of iterations parameter
+    //Check Epsilon parameter
     if(!cmdOptionExists(argv, argv+argc, "-e"))
     {
         std::cerr << "Epsilon Missed...Aborting..." << std::endl;
@@ -140,24 +141,13 @@ int main(int argc, char * argv[]) {
     }
 
     if(path == NULL){
-        ss << "nn_w_" << dataName << ".dat";
+        ss << "ulr_w_" << dataName << ".dat";
         wFn = ss.str();
         ss.str("");
         ss.clear();
     }else{
-        ss << path << "nn_w_" << dataName << ".dat";
+        ss << path << "ulr_w_" << dataName << ".dat";
         wFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }
-    if(path == NULL){
-        ss << "nn_bias_" << dataName << ".dat";
-        bFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }else{
-        ss << path << "nn_bias_" << dataName << ".dat";
-        bFn = ss.str();
         ss.str("");
         ss.clear();
     }
@@ -193,7 +183,7 @@ int main(int argc, char * argv[]) {
 
     int m,q;
     int *A, *Q;
-    double *W, *b, *I, *O;
+    double *W, *b, *O;
     FILE * out;
 
     double *timer;
@@ -216,28 +206,36 @@ int main(int argc, char * argv[]) {
     std::cout << "DIM A:" << m << std::endl;
     std::cout << "DIM Q:" << q << std::endl;
 
-    readNNInput(iFn, &I, q);
-    readNNParams(wFn, &W, 64);
-    readNNBias(bFn, &b, m, 1);
+    readRegrParams(wFn, &W, &b);
 
     out = fopen(outputFn, "r");
     if(out == NULL){
         out = fopen(outputFn, "w+");
-        fprintf(out, "File, Query, NN + BS Mean, NN + BS DevStd\n");
+        fprintf(out, "File, Query, ULR + BS Mean, ULR + BS DevStd\n");
     }else{
         fclose(out);
         out = fopen(outputFn, "a+");
     }
+
     int n = atoi(nIter);
     timer = (double*)calloc(n, sizeof(double));
+
     std::cout << nIter << std::endl;
     for( int j = 0; j < n; j++){
-        O = NNprediction(dataName, atoi(queryName), I, W, b, q, 64, 1, &timer[j]);
-
-        std::cout << "Performing Branch Free Binary Search" << std::endl;
-        std::clock_t c_start = std::clock();
+        O = ULRprediction(dataName, Q, W, b, q, 1, &timer[j]);
         for(int i = 0; i<q; i++){
-            res = branchfreeBS(A, Q[i], (int)O[i]-epsilon <= 0 ? 0 : (int)O[i]-epsilon, (int)O[i]+epsilon >= m-1 ? m-1 : (int)O[i]+epsilon);
+            //std::cout << "Pred: " << O[i] << std::endl;
+            O[i] = floor(O[i] * m);
+            //std::cout << "Pred Index: " << O[i] << std::endl;
+        }
+
+        std::cout << "Performing Branch Free Interpolation Search" << std::endl;
+        std::clock_t c_start = std::clock();
+        for(int i = 0; i<1; i++){
+            for(int r = 0; r<100: r++)
+            //std::cout << "Pred: " << O[i] << std::endl;
+            res = prefetchBranchfreeIS(A, Q[r], (int)O[r]-epsilon <= 0 ? 0 : (int)O[r]-epsilon, (int)O[r]+epsilon >= m-1 ? m-1 : (int)O[r]+epsilon);
+            //std::cout << "Risultato: " << res << std::endl;
         }
         std::clock_t c_end = std::clock();
         timer[j] += ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC/q;

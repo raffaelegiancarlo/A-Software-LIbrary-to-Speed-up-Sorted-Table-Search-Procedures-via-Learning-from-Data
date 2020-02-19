@@ -10,13 +10,11 @@
 
 #include "../lib/search_algh.h"
 #include "../lib/utils.h"
-#include "../lib/NNutils.h"
 
 
 int main(int argc, char * argv[]) {
 
     char *dataName, *queryName, *outputFn, *nIter, *path;
-    int epsilon;
     int align;
 
     std::cout << "Check Parameters..." << std::endl;
@@ -92,22 +90,6 @@ int main(int argc, char * argv[]) {
         }
     }
 
-    //Check Number of iterations parameter
-    if(!cmdOptionExists(argv, argv+argc, "-e"))
-    {
-        std::cerr << "Epsilon Missed...Aborting..." << std::endl;
-        return 1;
-    }else{
-        char * aus;
-        aus = getCmdOption(argv, argv + argc, "-e");
-        if(!aus || !strncmp ( aus, "-", 1 )){
-            std::cerr << "Epsilon Missed...Aborting..." << std::endl;
-            return 1;
-        }else{
-            epsilon = atoi(aus);
-        }
-    }
-
     //Check align memory params
     if(!cmdOptionExists(argv, argv+argc, "-a"))
     {
@@ -123,44 +105,9 @@ int main(int argc, char * argv[]) {
     * 
     */
     std::stringstream ss;
-    std::string iFn, wFn, bFn, oFn, QFn, AFn;
+    std::string oFn, QFn, AFn;
     ss.str("");
     ss.clear();
-
-    if(path == NULL){
-        ss << dataName << "Query" << queryName << "_bin.dat";
-        iFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }else{
-        ss << path << dataName << "Query" << queryName << "_bin.dat";
-        iFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }
-
-    if(path == NULL){
-        ss << "nn_w_" << dataName << ".dat";
-        wFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }else{
-        ss << path << "nn_w_" << dataName << ".dat";
-        wFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }
-    if(path == NULL){
-        ss << "nn_bias_" << dataName << ".dat";
-        bFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }else{
-        ss << path << "nn_bias_" << dataName << ".dat";
-        bFn = ss.str();
-        ss.str("");
-        ss.clear();
-    }
 
     if(path == NULL){
         ss << dataName << "Query" << queryName << ".csv";
@@ -193,7 +140,6 @@ int main(int argc, char * argv[]) {
 
     int m,q;
     int *A, *Q;
-    double *W, *b, *I, *O;
     FILE * out;
 
     double *timer;
@@ -216,14 +162,10 @@ int main(int argc, char * argv[]) {
     std::cout << "DIM A:" << m << std::endl;
     std::cout << "DIM Q:" << q << std::endl;
 
-    readNNInput(iFn, &I, q);
-    readNNParams(wFn, &W, 64);
-    readNNBias(bFn, &b, m, 1);
-
     out = fopen(outputFn, "r");
     if(out == NULL){
         out = fopen(outputFn, "w+");
-        fprintf(out, "File, Query, NN + BS Mean, NN + BS DevStd\n");
+        fprintf(out, "File, Query, Interpolation Search Mean, Interpolation Search DevStd\n");
     }else{
         fclose(out);
         out = fopen(outputFn, "a+");
@@ -232,12 +174,11 @@ int main(int argc, char * argv[]) {
     timer = (double*)calloc(n, sizeof(double));
     std::cout << nIter << std::endl;
     for( int j = 0; j < n; j++){
-        O = NNprediction(dataName, atoi(queryName), I, W, b, q, 64, 1, &timer[j]);
-
-        std::cout << "Performing Branch Free Binary Search" << std::endl;
+        std::cout << "Performing Interpolation Search " << j << std::endl;
         std::clock_t c_start = std::clock();
         for(int i = 0; i<q; i++){
-            res = branchfreeBS(A, Q[i], (int)O[i]-epsilon <= 0 ? 0 : (int)O[i]-epsilon, (int)O[i]+epsilon >= m-1 ? m-1 : (int)O[i]+epsilon);
+            res = prefetchBranchfreeIS(A, Q[i], 0, m-1);
+            //std::cout << "Risultato: " << res << std::endl;
         }
         std::clock_t c_end = std::clock();
         timer[j] += ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC/q;
@@ -249,7 +190,6 @@ int main(int argc, char * argv[]) {
         
         devStd += (timer[i] - timerAcc/n)*(timer[i] - timerAcc/n);
     }
-
 
     fprintf(out, "%s, %s, %.15lf, %.15lf\n", dataName, queryName, timerAcc/n, devStd/n>0 ? sqrt(devStd/n) : 0);
 

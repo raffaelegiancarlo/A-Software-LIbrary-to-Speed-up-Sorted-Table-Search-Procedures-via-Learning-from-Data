@@ -166,6 +166,7 @@ int branchfreeBS(int * A, int x,  int left, int right){
     int n = right-left+1;
     while (n > 1) {
         const int half = n / 2;
+        //printf("%d\n",half);
         base = (base[half] < x) ? &base[half] : base;
         n -= half;
     }
@@ -197,8 +198,8 @@ int* eytzeingerArray(int *A, int **B, int i, int n){
 
 int prefetchEytzBS(int * A, int x,  int left, int right){
     
-    int i = left;
-    int n = right-left+1;
+    int i = 0;
+    int n = right;
     int multiplier = 128;
     int offset = 3*multiplier/2-1;
 
@@ -208,5 +209,33 @@ int prefetchEytzBS(int * A, int x,  int left, int right){
     }
     int j = (i+1) >> __builtin_ffs(~(i+1));
     return (j == 0) ? n : j-1;
+}
+
+int prefetchBranchfreeIS(int * A, int x,  int left, int right){
+    
+    const int *base = A+left;
+    int i = left;
+    int n = right-left+1;
+    int multiplier = 128;
+    int offset = 3*multiplier/2-1;
+
+    x = (x < A[left]) ? A[left] : x;
+    x = (x > A[right]) ? A[right] : x;
+    while (n > 1) {
+
+        __builtin_prefetch(A+(multiplier*i + offset));
+        double prod = (double)(x - *base)/(*(base+n-1) - *base);
+        int pivot = (base-A) + (n-1) * floor(prod);
+       
+
+       
+        if(*base == x){
+            return base - A;
+        }
+        n = (*(base) < x) ? n-(pivot-(base-A)+1) : pivot-(base-A)+1;
+        base = (*(base +pivot) < x) ? base+pivot : base;
+        
+    }
+    return (*base < x) + base - A;
 }
 

@@ -10,7 +10,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Train NN for Datastructure index')
 parser.add_argument('-i', '--input', dest="inputFile", default="uni01.sorted",
                     help='Input file name')
-parser.add_argument('-id', '--inputDir', dest="inputDir", default="./",
+parser.add_argument('-id', '--inputDir', dest="inputDir", default="./Resource",
 help='Input file path')
 parser.add_argument('-o', '--output', dest="outputFile", default="multivariate_linear_regression.json",
                     help='Output file name')

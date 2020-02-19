@@ -8,7 +8,7 @@ long readCSV(std::string fn, int **data){
     fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "File Error: Opening File " << fn << " Failed.";
+        errMsg << "File Error: Opening File" << fn << "Failed.";
         throw std::runtime_error(errMsg.str().c_str());
     }
     i++;
@@ -32,6 +32,38 @@ long readCSV(std::string fn, int **data){
     return i;
 }
 
+long readCSValign(std::string fn, int **data){
+    FILE* fp; 
+    int i = 0;
+    char ch;
+    fp = fopen( fn.c_str(), "r" );
+    if(fp == NULL){ 
+        std::stringstream errMsg;
+        errMsg << "File Error: Opening File" << fn << "Failed.";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
+    i++;
+    while ((ch = fgetc(fp)) != EOF)
+    {
+      if (ch == '\n')
+        i++;
+    }
+    std::cout << i << std::endl;
+    //*data = (int*)malloc(i*sizeof(int));
+    int err = posix_memalign((void**)data, 64, i*sizeof(int));
+    if(err) { 
+        std::stringstream errMsg;
+        errMsg << "Allocation Error " << err << ": Not enough Memory...";
+        throw std::runtime_error(errMsg.str().c_str());
+    }
+    fseek(fp, 0L, SEEK_SET);
+    for(i = 0; !feof(fp); i++){
+        fscanf(fp, "%d\n", &data[0][i]);
+    }
+
+    return i;
+}
+
 long readCSVQ(std::string fn, int **data){
     std::cout << "Reading Queries..." << std::endl;
     FILE* fp; 
@@ -40,7 +72,7 @@ long readCSVQ(std::string fn, int **data){
     fp = fopen( fn.c_str(), "r" );
     if(fp == NULL){ 
         std::stringstream errMsg;
-        errMsg << "File Error: Opening File " << fn << " Failed.";
+        errMsg << "File Error: Opening File Failed.";
         throw std::runtime_error(errMsg.str().c_str());
     }
     *data = (int*)malloc(sizeof(int));

@@ -15,6 +15,7 @@
 int main(int argc, char * argv[]) {
 
     char *dataName, *queryName, *outputFn, *nIter, *path;
+    int align;
 
     std::cout << "Check Parameters..." << std::endl;
 
@@ -89,6 +90,14 @@ int main(int argc, char * argv[]) {
         }
     }
 
+    //Check align memory params
+    if(!cmdOptionExists(argv, argv+argc, "-a"))
+    {
+        align=0;
+    }else{
+        align=1;
+    }
+
 
     /*
     *
@@ -112,12 +121,12 @@ int main(int argc, char * argv[]) {
         ss.clear();
     }
     if(path == NULL){
-        ss << dataName << ".csv";
+        ss << dataName << ".sorted.csv";
         AFn = ss.str();
         ss.str("");
         ss.clear();
     }else{
-        ss << path << dataName << ".csv";
+        ss << path << dataName << ".sorted.csv";
         AFn = ss.str();
         ss.str("");
         ss.clear();
@@ -140,10 +149,15 @@ int main(int argc, char * argv[]) {
     std::cout << AFn << std::endl;
 
     std::cout << "Reading Input data" << std::endl;
-    m = readCSV(AFn, &A);
-
+    if(align)
+        m = readCSValign(AFn, &A);
+    else
+        m = readCSV(AFn, &A);
     std::cout << "Reading Query data" << std::endl;
-    q = readCSV(QFn, &Q);
+    if(align)
+        q = readCSValign(QFn, &Q);
+    else
+        q = readCSV(QFn, &Q);
 
     std::cout << "DIM A:" << m << std::endl;
     std::cout << "DIM Q:" << q << std::endl;
