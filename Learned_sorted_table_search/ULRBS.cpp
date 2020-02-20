@@ -223,13 +223,12 @@ int main(int argc, char * argv[]) {
     std::cout << nIter << std::endl;
     for( int j = 0; j < n; j++){
         O = ULRprediction(dataName, Q, W, b, q, 1, &timer[j]);
-        for(int t = 0; t< q; t++){
-            O[t] = O[t]*m;
-        }
+        int predIdx =0;
         std::cout << "Performing Branch Free Binary Search" << std::endl;
         std::clock_t c_start = std::clock();
         for(int i = 0; i<q; i++){
-            res = branchfreeBS(A, Q[i], (int)O[i]-epsilon <= 0 ? 0 : (int)O[i]-epsilon, (int)O[i]+epsilon >= m-1 ? m-1 : (int)O[i]+epsilon);
+            predIdx = O[i]*m;
+            res = branchfreeBS(A, Q[i]*m, predIdx-epsilon <= 0 ? 0 : predIdx-epsilon, predIdx+epsilon >= m-1 ? m-1 : predIdx+epsilon);
         }
         std::clock_t c_end = std::clock();
         timer[j] += ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC/q;
