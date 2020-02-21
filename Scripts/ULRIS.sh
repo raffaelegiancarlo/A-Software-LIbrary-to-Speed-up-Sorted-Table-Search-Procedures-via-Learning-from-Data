@@ -31,3 +31,11 @@ g++ ../Learned_sorted_table_search/ULRIS.cpp -o ../Learned_sorted_table_search/U
 ../Learned_sorted_table_search/ULRIS -p ../Resource/ -d logn04.sorted -o ULRIS.csv -q 10 -n 100 -e 55976156
 ../Learned_sorted_table_search/ULRIS -p ../Resource/ -d logn04.sorted -o ULRIS.csv -q 50 -n 100 -e 55976156
 ../Learned_sorted_table_search/ULRIS -p ../Resource/ -d logn04.sorted -o ULRIS.csv -q 80 -n 100 -e 55976156
+
+../Learned_sorted_table_search/ULRIS -p ../Resource/ -d real-wl.sorted -o ULRIS.csv -q 10 -n 100 -e 1794
+../Learned_sorted_table_search/ULRIS -p ../Resource/ -d real-wl.sorted -o ULRIS.csv -q 50 -n 100 -e 1794
+../Learned_sorted_table_search/ULRIS -p ../Resource/ -d real-wl.sorted -o ULRIS.csv -q 80 -n 100 -e 1794
+
+../Learned_sorted_table_search/ULRIS -p ../Resource/ -d real-iot.sorted -o ULRIS.csv -q 10 -n 100 -e 534810
+../Learned_sorted_table_search/ULRIS -p ../Resource/ -d real-iot.sorted -o ULRIS.csv -q 50 -n 100 -e 534810
+../Learned_sorted_table_search/ULRIS -p ../Resource/ -d real-iot.sorted -o ULRIS.csv -q 80 -n 100 -e 534810

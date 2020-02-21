@@ -31,3 +31,11 @@ g++ ../Interpolation_Search/interpolationSearch.cpp -o ../Interpolation_Search/i
 ../Interpolation_Search/interpolationSearch -p ../Resource/ -d logn04.sorted -o interpolationSearch.csv -q 10 -n 100
 ../Interpolation_Search/interpolationSearch -p ../Resource/ -d logn04.sorted -o interpolationSearch.csv -q 50 -n 100
 ../Interpolation_Search/interpolationSearch -p ../Resource/ -d logn04.sorted -o interpolationSearch.csv -q 80 -n 100
+
+../Interpolation_Search/interpolationSearch -p ../Resource/ -d real-wl.sorted -o interpolationSearch.csv -q 10 -n 100
+../Interpolation_Search/interpolationSearch -p ../Resource/ -d real-wl.sorted -o interpolationSearch.csv -q 50 -n 100
+../Interpolation_Search/interpolationSearch -p ../Resource/ -d real-wl.sorted -o interpolationSearch.csv -q 80 -n 100
+
+../Interpolation_Search/interpolationSearch -p ../Resource/ -d real-iot.sorted -o interpolationSearch.csv -q 10 -n 100
+../Interpolation_Search/interpolationSearch -p ../Resource/ -d real-iot.sorted -o interpolationSearch.csv -q 50 -n 100
+../Interpolation_Search/interpolationSearch -p ../Resource/ -d real-iot.sorted -o interpolationSearch.csv -q 80 -n 100
