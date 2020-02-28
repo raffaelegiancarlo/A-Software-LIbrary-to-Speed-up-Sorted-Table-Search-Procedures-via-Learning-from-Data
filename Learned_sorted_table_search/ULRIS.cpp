@@ -232,7 +232,7 @@ int main(int argc, char * argv[]) {
         std::clock_t c_end = std::clock();
         timer[j] += ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC/q;
         timerAcc += timer[j];
-        
+        free(O);
     }
 
     for(int i = 0; i<n; i++){

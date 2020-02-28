@@ -223,20 +223,18 @@ int main(int argc, char * argv[]) {
     std::cout << nIter << std::endl;
     for( int j = 0; j < n; j++){
         O = ULRprediction(dataName, Q, W, b, q, 1, &timer[j]);
-        for(int i = 0; i<q; i++){
-            //std::cout << "Pred: " << O[i] << std::endl;
-            O[i] = floor(O[i] * m);
-            //std::cout << "Pred Index: " << O[i] << std::endl;
-        }
+        int predIdx=0;
 
         std::cout << "Performing Branch Free Interpolation Search" << std::endl;
         std::clock_t c_start = std::clock();
-        for(int i = 0; i<1; i++){
-            for(int r = 0; r<100: r++)
+
+        for(int r = 0; r<q: r++){
             //std::cout << "Pred: " << O[i] << std::endl;
-            res = prefetchBranchfreeIS(A, Q[r], (int)O[r]-epsilon <= 0 ? 0 : (int)O[r]-epsilon, (int)O[r]+epsilon >= m-1 ? m-1 : (int)O[r]+epsilon);
+            predIdx = O[r]*m;
+            res = prefetchBranchfreeIS(A, Q[r], predIdx-epsilon <= 0 ? 0 : predIdx-epsilon, predIdx+epsilon >= m-1 ? m-1 : predIdx+epsilon);
             //std::cout << "Risultato: " << res << std::endl;
         }
+        
         std::clock_t c_end = std::clock();
         timer[j] += ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC/q;
         timerAcc += timer[j];

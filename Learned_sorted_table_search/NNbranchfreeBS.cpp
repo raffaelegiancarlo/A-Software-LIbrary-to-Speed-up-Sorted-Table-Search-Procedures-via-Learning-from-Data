@@ -233,16 +233,17 @@ int main(int argc, char * argv[]) {
     std::cout << nIter << std::endl;
     for( int j = 0; j < n; j++){
         O = NNprediction(dataName, atoi(queryName), I, W, b, q, 64, 1, &timer[j]);
-
+        int predIdx =0;
         std::cout << "Performing Branch Free Binary Search" << std::endl;
         std::clock_t c_start = std::clock();
         for(int i = 0; i<q; i++){
-            res = branchfreeBS(A, Q[i], (int)O[i]-epsilon <= 0 ? 0 : (int)O[i]-epsilon, (int)O[i]+epsilon >= m-1 ? m-1 : (int)O[i]+epsilon);
+            predIdx = O[i]*m;
+            res = branchfreeBS(A, Q[i], predIdx-epsilon <= 0 ? 0 : predIdx-epsilon, predIdx+epsilon >= m-1 ? m-1 : predIdx+epsilon);
         }
         std::clock_t c_end = std::clock();
         timer[j] += ((double)c_end-(double)c_start) / (double)CLOCKS_PER_SEC/q;
         timerAcc += timer[j];
-        
+        free(O);
     }
 
     for(int i = 0; i<n; i++){
