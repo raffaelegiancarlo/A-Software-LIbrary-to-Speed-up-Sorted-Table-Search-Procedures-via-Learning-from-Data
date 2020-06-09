@@ -166,7 +166,7 @@ int main(int argc, char * argv[]) {
     out = fopen(outputFn, "r");
     if(out == NULL){
         out = fopen(outputFn, "w+");
-        fprintf(out, "File, Query, Branchfree BS Mean, Branchfree BS DevStd\n");
+        fprintf(out, "File, Query, Branchfree BS Mean, Branchfree BS DevStd, Iter\n");
     }else{
         fclose(out);
         out = fopen(outputFn, "a+");
@@ -174,11 +174,13 @@ int main(int argc, char * argv[]) {
     int n = atoi(nIter);
     timer = (double*)calloc(n, sizeof(double));
     std::cout << nIter << std::endl;
+    long count;
     for( int j = 0; j < n; j++){
+        count=0;
         std::cout << "Performing Branch Free Binary Search " << j << std::endl;
         std::clock_t c_start = std::clock();
         for(int i = 0; i<q; i++){
-            res = branchfreeBS(A, Q[i], 0, m);
+            res = branchfreeBS(A, Q[i], 0, m, &count);
             //std::cout << res<< std::endl;
         }
         std::clock_t c_end = std::clock();
@@ -192,7 +194,7 @@ int main(int argc, char * argv[]) {
         devStd += (timer[i] - timerAcc/n)*(timer[i] - timerAcc/n);
     }
 
-    fprintf(out, "%s, %s, %.15lf, %.15lf\n", dataName, queryName, timerAcc/n, devStd/n>0 ? sqrt(devStd/n) : 0);
+    fprintf(out, "%s, %s, %.15lf, %.15lf, %lf\n", dataName, queryName, timerAcc/n, devStd/n>0 ? sqrt(devStd/n) : 0, (double)count/(double)q);
 
     return 0;    
 }
